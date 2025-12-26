@@ -1,0 +1,26 @@
+# Auto Claude data directory
+.auto-claude/
+**/gen/**
+@cds-models
+
+# Append all files which are generally ignored in SAP CAP BTP Projects i..e mtar, mta-op-, *.log, /ge/, /dist/, .vscode. .history. .env etc. 
+**/node_modules/**
+dist/
+.gen/
+.vscode/
+.history/
+.env
+.mtar
+mta-op-*
+*.log
+.DS_Store
+.idea/
+*.iml
+
+# ignore all Node.js related files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log* 
+lerna-debug.log*
+.env.*

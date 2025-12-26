@@ -1,0 +1,35 @@
+{
+  "name": "testAutoCloud",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@sap/cds": "^9",
+    "express": "^4",
+    "@cap-js/console": "^1.0.0"
+  },
+  "devDependencies": {
+    "@cap-js/cds-typer": ">=0.1",
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "db-ext": {
+        "[development]": {
+          "model": "db/sqlite"
+        },
+        "[production]": {
+          "model": "db/hana"
+        }
+      }
+    }
+  },
+  "type": "module",
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
+  }
+}
