@@ -1,0 +1,24 @@
+{
+  "lsp": {
+    "servers": [
+      {
+        "language": ["typescript", "javascript", "typescriptreact", "javascriptreact"],
+        "command": ["typescript-language-server", "--stdio"],
+        "rootPatterns": ["tsconfig.json", "jsconfig.json", "package.json"],
+        "qualifiedName": "typescript-lsp"
+      },
+      {
+        "language": ["cds"],
+        "command": ["cds-lsp", "--stdio"],
+        "rootPatterns": [".cdsrc.json", "package.json"],
+        "qualifiedName": "sap-cds-lsp"
+      },
+      {
+        "language": ["json"],
+        "command": ["vscode-json-language-server", "--stdio"],
+        "rootPatterns": ["package.json"],
+        "qualifiedName": "json-lsp"
+      }
+    ]
+  }
+}
