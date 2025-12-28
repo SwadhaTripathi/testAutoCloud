@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cds build:*)",
+      "Bash(cds deploy:*)",
+      "Bash(cd:*)",
+      "Bash(cds watch:*)",
+      "Bash(npm install:*)",
+      "Bash(cds add:*)",
+      "Bash(git add:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "playwright-test"
+  ]
+}

@@ -35,7 +35,22 @@ annotate my.Books with @(
     Text: title,
     TextArrangement : #TextOnly
   };
-  author @ValueList.entity      : 'Authors';
+  author @Common: {
+    ValueList: {
+      CollectionPath: 'Authors',
+      Parameters: [
+        {
+          $Type: 'Common.ValueListParameterInOut',
+          LocalDataProperty: author_ID,
+          ValueListProperty: 'ID'
+        },
+        {
+          $Type: 'Common.ValueListParameterDisplayOnly',
+          ValueListProperty: 'name'
+        }
+      ]
+    }
+  };
 };
 
 annotate common.Currencies with {

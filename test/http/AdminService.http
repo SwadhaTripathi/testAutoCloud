@@ -1,0 +1,181 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### Authors
+# @name Authors_GET
+GET {{server}}/odata/v4/admin/Authors
+Authorization: Basic {{username}}:{{password}}
+
+
+### Authors Drafts GET
+# @name Authors_Drafts_GET
+GET {{server}}/odata/v4/admin/Authors?$filter=(IsActiveEntity eq false)
+Authorization: Basic {{username}}:{{password}}
+
+
+### Authors Draft POST
+# @name Authors_Draft_POST
+POST {{server}}/odata/v4/admin/Authors
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "name": "name-31712416",
+  "dateOfBirth": "2008-03-24",
+  "dateOfDeath": "2019-03-31",
+  "placeOfBirth": "placeOfBirth-31712416",
+  "placeOfDeath": "placeOfDeath-31712416",
+  "createdAt": "2001-04-16T18:30:00.000Z",
+  "createdBy": "createdBy.ivpgg@example.net",
+  "modifiedAt": "2019-01-10T18:30:00.000Z",
+  "modifiedBy": "modifiedBy.ivpgg@example.org"
+}
+
+
+### Result from POST request above
+@draftID={{Authors_Draft_POST.response.body.$.ID}}
+
+
+### Authors Draft PATCH
+# @name Authors_Draft_Patch
+PATCH {{server}}/odata/v4/admin/Authors(ID={{draftID}},IsActiveEntity=false)
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "name": "name-31712416",
+  "dateOfBirth": "2008-03-24",
+  "dateOfDeath": "2019-03-31",
+  "placeOfBirth": "placeOfBirth-31712416",
+  "placeOfDeath": "placeOfDeath-31712416",
+  "createdAt": "2001-04-16T18:30:00.000Z",
+  "createdBy": "createdBy.ivpgg@example.net",
+  "modifiedAt": "2019-01-10T18:30:00.000Z",
+  "modifiedBy": "modifiedBy.ivpgg@example.org"
+}
+
+
+### Authors Draft Prepare
+# @name Authors_Draft_Prepare
+POST {{server}}/odata/v4/admin/Authors(ID={{draftID}},IsActiveEntity=false)/AdminService.draftPrepare
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{}
+
+
+### Authors Draft Activate
+# @name Authors_Draft_Activate
+POST {{server}}/odata/v4/admin/Authors(ID={{draftID}},IsActiveEntity=false)/AdminService.draftActivate
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{}
+
+
+### Books
+# @name Books_GET
+GET {{server}}/odata/v4/admin/Books
+Authorization: Basic {{username}}:{{password}}
+
+
+### Books Drafts GET
+# @name Books_Drafts_GET
+GET {{server}}/odata/v4/admin/Books?$filter=(IsActiveEntity eq false)
+Authorization: Basic {{username}}:{{password}}
+
+
+### Books Draft POST
+# @name Books_Draft_POST
+POST {{server}}/odata/v4/admin/Books
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "author": {
+    "ID": 31712416
+  },
+  "title": "title-30107169",
+  "descr": "descr-30107169",
+  "genre": {
+    "ID": "29938116-b1dd-4334-917a-a21e7c0a937d"
+  },
+  "stock": 32,
+  "price": 7199734.89,
+  "currency": {
+    "code": "373"
+  },
+  "createdAt": "2011-05-09T18:30:00.000Z",
+  "createdBy": "createdBy.hxau9@example.com",
+  "modifiedAt": "2001-10-06T18:30:00.000Z",
+  "modifiedBy": "modifiedBy.hxau9@example.net"
+}
+
+
+### Result from POST request above
+@draftID={{Books_Draft_POST.response.body.$.ID}}
+
+
+### Books Draft PATCH
+# @name Books_Draft_Patch
+PATCH {{server}}/odata/v4/admin/Books(ID={{draftID}},IsActiveEntity=false)
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "author": {
+    "ID": 31712416
+  },
+  "title": "title-30107169",
+  "descr": "descr-30107169",
+  "genre": {
+    "ID": "29938116-b1dd-4334-917a-a21e7c0a937d"
+  },
+  "stock": 32,
+  "price": 7199734.89,
+  "currency": {
+    "code": "373"
+  },
+  "createdAt": "2011-05-09T18:30:00.000Z",
+  "createdBy": "createdBy.hxau9@example.com",
+  "modifiedAt": "2001-10-06T18:30:00.000Z",
+  "modifiedBy": "modifiedBy.hxau9@example.net"
+}
+
+
+### Books Draft Prepare
+# @name Books_Draft_Prepare
+POST {{server}}/odata/v4/admin/Books(ID={{draftID}},IsActiveEntity=false)/AdminService.draftPrepare
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{}
+
+
+### Books Draft Activate
+# @name Books_Draft_Activate
+POST {{server}}/odata/v4/admin/Books(ID={{draftID}},IsActiveEntity=false)/AdminService.draftActivate
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{}
+
+
+### Genres
+# @name Genres_GET
+GET {{server}}/odata/v4/admin/Genres
+Authorization: Basic {{username}}:{{password}}
+
+
+### Currencies
+# @name Currencies_GET
+GET {{server}}/odata/v4/admin/Currencies
+Authorization: Basic {{username}}:{{password}}
+
+
+### Languages
+# @name Languages_GET
+GET {{server}}/odata/v4/admin/Languages
+Authorization: Basic {{username}}:{{password}}
