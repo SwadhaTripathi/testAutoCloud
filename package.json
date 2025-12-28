@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
+    "@cap-js/console": "^1.0.0",
     "@sap/cds": "^9",
-    "express": "^4",
-    "@cap-js/console": "^1.0.0"
+    "cds-swagger-ui-express": "^0.10.0",
+    "express": "^4"
   },
   "devDependencies": {
     "@cap-js/cds-typer": ">=0.1",
@@ -13,7 +14,10 @@
     "@sap/cds-dk": "^9"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "run": "cds watch --profile development",
+    "build": "cds build/all && cds build -production",
+    "deploy": "cds deploy --to sqlite"
   },
   "private": true,
   "cds": {
@@ -25,6 +29,18 @@
         "[production]": {
           "model": "db/hana"
         }
+      },
+      "destinations": true,
+      "connectivity": true
+    },
+    "protocols": {
+      "rest": {
+        "path": "/rest"
+      }
+    },
+    "openapi": {
+      "swagger_ui": {
+        "url": "/swagger"
       }
     }
   },
