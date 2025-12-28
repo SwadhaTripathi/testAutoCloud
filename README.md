@@ -48,6 +48,32 @@ This project includes:
 - **Destination Support** - Integration with SAP BTP destinations
 - **Connectivity Support** - SAP BTP connectivity service integration
 - **HTTP Tests** - Ready-to-use HTTP test files for services
+- **Automated CI/CD** - GitHub Actions workflow for build, deploy, and auto-fix
+- **Git Hooks** - Local automation for pull, build, and deploy
+- **Auto-Fix Scripts** - Automatically fixes common build errors
+
+## Automation
+
+This project includes comprehensive automation for continuous integration and deployment:
+
+### GitHub Actions
+Automatically triggered on push to `ClaudeCode` branch:
+- Builds and deploys the project
+- Auto-fixes common errors
+- Merges to `dev` branch on success
+
+### Local Git Hooks
+Runs automatically after `git pull`:
+- Builds and deploys locally
+- Auto-fixes errors
+- Commits and pushes fixes
+
+### Manual Scripts
+Run manually when needed:
+- **Windows**: `scripts\auto-pull-build-watch.bat`
+- **Linux/Mac**: `./scripts/auto-pull-build-watch.sh`
+
+For detailed automation documentation, see [AUTOMATION.md](AUTOMATION.md)
 
 ## Learn More
 
