@@ -56,22 +56,51 @@ This project includes:
 
 This project includes comprehensive automation for continuous integration and deployment:
 
+### Automation Status
+
+**Trigger Conditions:**
+- ✅ **Code Changes Only** - Triggers only when code files change (`.js`, `.cds`, `.json`, `.yaml`, `.yml`, `srv/`, `db/`, `app/`)
+- ✅ **Different User Detection** - GitHub Actions runs only when a different user pushes (prevents loops)
+- ✅ **Smart Skip** - Automatically skips builds for documentation/README changes
+- ✅ **Safe from Infinite Loops** - Multiple safeguards prevent recursive triggers
+
 ### GitHub Actions
-Automatically triggered on push to `ClaudeCode` branch:
+**Status:** 🟢 Active
+**Triggers:** Push to `ClaudeCode` branch (code files only, different user)
+**Actions:**
+- Detects if same user pushed twice in a row (skips if true)
 - Builds and deploys the project
 - Auto-fixes common errors
+- Commits fixes with bot identity
 - Merges to `dev` branch on success
 
+**Monitored Files:**
+- `srv/**` - Service implementations
+- `db/**` - Database schemas
+- `app/**/*.cds`, `app/**/*.js` - Application code
+- `package.json`, `package-lock.json` - Dependencies
+- `mta.yaml`, `server.js` - Configuration
+
 ### Local Git Hooks
-Runs automatically after `git pull`:
+**Status:** 🟢 Active
+**Triggers:** After `git pull` (code changes only)
+**Actions:**
+- Detects code vs documentation changes
+- Skips build if only docs/README changed
 - Builds and deploys locally
 - Auto-fixes errors
 - Commits and pushes fixes
 
 ### Manual Scripts
+**Status:** 🟢 Ready
 Run manually when needed:
 - **Windows**: `scripts\auto-pull-build-watch.bat`
 - **Linux/Mac**: `./scripts/auto-pull-build-watch.sh`
+
+**Features:**
+- Pre-pull change detection
+- Smart code vs docs differentiation
+- Full build, deploy, and watch cycle
 
 For detailed automation documentation, see [AUTOMATION.md](AUTOMATION.md)
 
