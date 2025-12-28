@@ -7,7 +7,12 @@
       "Bash(cds watch:*)",
       "Bash(npm install:*)",
       "Bash(cds add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd OpenAPI Swagger, destination, connectivity, and HTTP test support\n\n- Installed cds-swagger-ui-express for API documentation\n- Added destination and connectivity support for SAP BTP integration\n- Created HTTP test files for AdminService and CatalogService\n- Fixed ES module errors in service implementations \\(admin-service.js, cat-service.js\\)\n- Fixed ValueList.entity warnings in app/common.cds\n- Updated README.md with available endpoints and features documentation\n- Created server.js to initialize Swagger UI integration\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(gh pr create:*)",
+      "Bash(git checkout:*)",
+      "Bash(git commit:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
