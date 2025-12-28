@@ -16,7 +16,25 @@ fi
 
 # Pull latest changes from remote
 echo "📥 Pulling latest changes from origin/ClaudeCode..."
+BEFORE_PULL=$(git rev-parse HEAD)
 git pull origin ClaudeCode
+AFTER_PULL=$(git rev-parse HEAD)
+
+# Check if code files were changed
+if [ "$BEFORE_PULL" != "$AFTER_PULL" ]; then
+    CODE_CHANGED=$(git diff --name-only $BEFORE_PULL $AFTER_PULL | grep -E '\.(js|cds|json|yaml|yml)$|^srv/|^db/|^app/')
+
+    if [ -z "$CODE_CHANGED" ]; then
+        echo "No code changes detected (only docs/text files changed). Skipping build..."
+        exit 0
+    fi
+
+    echo "Code changes detected:"
+    echo "$CODE_CHANGED"
+else
+    echo "No new commits pulled. Nothing to build."
+    exit 0
+fi
 
 # Install/update dependencies
 echo "📦 Installing/updating dependencies..."

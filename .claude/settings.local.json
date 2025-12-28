@@ -16,7 +16,8 @@
       "Bash(chmod:*)",
       "Bash(git push:*)",
       "Bash(gh run list:*)",
-      "Bash(gh run view:*)"
+      "Bash(gh run view:*)",
+      "Bash(git branch:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
