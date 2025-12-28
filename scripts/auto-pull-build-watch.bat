@@ -16,11 +16,30 @@ if not "%CURRENT_BRANCH%"=="ClaudeCode" (
 
 REM Pull latest changes from remote
 echo Pulling latest changes from origin/ClaudeCode...
+for /f "tokens=*" %%i in ('git rev-parse HEAD') do set BEFORE_PULL=%%i
 git pull origin ClaudeCode
 if errorlevel 1 (
     echo Failed to pull changes
     exit /b 1
 )
+for /f "tokens=*" %%i in ('git rev-parse HEAD') do set AFTER_PULL=%%i
+
+REM Check if code files were changed
+if "%BEFORE_PULL%"=="%AFTER_PULL%" (
+    echo No new commits pulled. Nothing to build.
+    exit /b 0
+)
+
+echo Checking for code changes...
+git diff --name-only %BEFORE_PULL% %AFTER_PULL% > %TEMP%\git_changes.txt
+findstr /R "\.js$ \.cds$ \.json$ \.yaml$ \.yml$ ^srv\\ ^db\\ ^app\\" %TEMP%\git_changes.txt > nul
+if errorlevel 1 (
+    echo No code changes detected (only docs/text files changed). Skipping build...
+    del %TEMP%\git_changes.txt
+    exit /b 0
+)
+echo Code changes detected. Proceeding with build...
+del %TEMP%\git_changes.txt
 
 REM Install/update dependencies
 echo Installing/updating dependencies...
