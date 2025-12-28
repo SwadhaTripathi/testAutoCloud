@@ -38,7 +38,7 @@ jobs:
         id: deploy
         continue-on-error: true
         run: |
-          cds deploy || echo "DEPLOY_FAILED=true" >> $GITHUB_ENV
+          npx cds deploy || echo "DEPLOY_FAILED=true" >> $GITHUB_ENV
 
       - name: Check for build/deploy errors
         id: check_errors
@@ -63,7 +63,7 @@ jobs:
 
           # Retry build after fixes
           npm run build
-          cds deploy
+          npx cds deploy
 
       - name: Commit fixes if any
         if: env.ERRORS_FOUND == 'true'
