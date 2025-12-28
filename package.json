@@ -16,7 +16,7 @@
   "scripts": {
     "start": "cds-serve",
     "run": "cds watch --profile development",
-    "build": "cds build/all && cds build -production",
+    "build": "cds build && cds build --production",
     "deploy": "cds deploy --to sqlite"
   },
   "private": true,
